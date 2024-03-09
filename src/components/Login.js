@@ -45,7 +45,7 @@ const Login = () => {
             Swal.fire("Plz Fill Out The Required Fields");
 
         } else {
-            fetch("http://appsdemo.pro/AceTech/user/login", requestOptions)
+            fetch("https://appsdemo.pro/AceTech/user/login", requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
                     setIsLoading(false);

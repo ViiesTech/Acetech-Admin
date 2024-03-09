@@ -42,7 +42,7 @@ const Home = () => {
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'http://appsdemo.pro/AceTech/user/all-vehicle',
+      url: 'https://appsdemo.pro/AceTech/user/all-vehicle',
       headers: {
         'Authorization': `Bearer ${token}`
       },
@@ -100,7 +100,7 @@ const Home = () => {
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: `http://appsdemo.pro/AceTech/user/truck-number/${inputValue}`,
+      url: `https://appsdemo.pro/AceTech/user/truck-number/${inputValue}`,
       headers: {
         'Authorization': `Bearer ${token}`
       }

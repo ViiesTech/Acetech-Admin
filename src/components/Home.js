@@ -25,39 +25,47 @@ const Home = () => {
 
   const [state, setState] = useState(false)
 
-  const [center, setCenter] = useState({
-    lat: 24.9019,
-    lng: 67.0767
-  });
+ 
   const [longitude, setLongitude] = useState()
   const [latitude, setLatitude] = useState()
-  const [zoom, setZoom] = useState();
   const inputRef = useRef();
+  const [center, setCenter] = useState(null);
+  const [zoom, setZoom] = useState(10);
 
+  useEffect(() => {
+    // Fetch data or perform any necessary operations here
+    getData();
+    getUserLocation();
+  }, []);
 
-
-  const getData = async () => {
-    let data = '';
-
-    let config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: 'https://appsdemo.pro/AceTech/user/all-vehicle',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      data: data
-    };
-
-    await axios.request(config)
-      .then((response) => {
-        console.log('all coordinates', response?.data?.data)
-        setAllCordinates(response?.data?.data);
-      })
-      .catch((error) => {
-        console.log(error);
+const getData = async () => {
+    try {
+      const response = await axios.get('https://appsdemo.pro/AceTech/user/all-vehicle', {
+        headers: { 'Authorization': `Bearer ${token}` }
       });
-  }
+      console.log('all coordinates', response.data.data);
+      setAllCordinates(response.data.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const getUserLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const userLocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        setCenter(userLocation);
+        setZoom(12); // Adjust zoom level as needed
+      }, error => {
+        console.error('Error getting user location:', error);
+      });
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  };
 
   useEffect(() => {
     getData()

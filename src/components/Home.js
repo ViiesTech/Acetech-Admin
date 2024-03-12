@@ -33,6 +33,7 @@ const Home = () => {
   const [zoom, setZoom] = useState(10);
 
   useEffect(() => {
+    //updated
     // Fetch data or perform any necessary operations here
     getData();
     getUserLocation();

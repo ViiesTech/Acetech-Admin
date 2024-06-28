@@ -22,7 +22,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const token = useSelector(state => state.user.token);
   const [allCoordinates, setAllCordinates] = useState([]);
-
+console.log(allCoordinates)
   const [state, setState] = useState(false)
 
  
@@ -41,7 +41,7 @@ const Home = () => {
 
 const getData = async () => {
     try {
-      const response = await axios.get('https://appsdemo.pro/AceTech/user/all-vehicle', {
+      const response = await axios.get('https://www.yourappdemo.com/AceTech/user/all-vehicle', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       console.log('all coordinates', response.data.data);
@@ -109,7 +109,7 @@ const getData = async () => {
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: `https://appsdemo.pro/AceTech/user/truck-number/${inputValue}`,
+      url: `https://www.yourappdemo.com/AceTech/user/truck-number/${inputValue}`,
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -175,6 +175,8 @@ const getData = async () => {
         >
           {allCoordinates?.map((area, index) => (
             area?.location && (
+              // console.log('area',area?.location?.coordinates)
+        
               <Marker
                 key={index}
                 icon={{

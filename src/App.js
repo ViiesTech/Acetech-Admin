@@ -5,7 +5,6 @@ import Home from './components/Home';
 import { useSelector } from 'react-redux';
 function App() {
  const token = useSelector(state=>state.user.token)
-//  console.log(token)
   return (
       <BrowserRouter>
         <Routes>

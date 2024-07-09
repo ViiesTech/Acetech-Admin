@@ -10,8 +10,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/dashboard" element={token ? <Home /> : <Navigate to="/" />} />
         <Route path="/" element={token ? <Navigate to="/dashboard" /> : <Login />} />
+        <Route path="/dashboard" element={token ? <Home /> : <Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );

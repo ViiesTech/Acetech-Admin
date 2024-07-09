@@ -1,28 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setToken, setUser } from '../redux/authSlice'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useDispatch,  } from 'react-redux'
+import { setToken } from '../redux/authSlice'
 import { Images } from '../assets/Images/Appassets'
 import Swal from 'sweetalert2'
 import Loader from "react-js-loader";
 
 const Login = () => {
     const dispatch = useDispatch()
-    const navigate = useNavigate();
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [refreshed, setRefreshed] = useState(false);
     const [isloading, setIsLoading] = useState(false)
-    const token = useSelector(state => state.user.token)
 
-    useEffect(() => {
-        // console.log('toksssen', token);
-
-
-        if (token) {
-            navigate('/home');
-        }
-    }, [token]);
+    
 
     const login = () => {
         setIsLoading(true);
@@ -63,15 +52,6 @@ const Login = () => {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        // console.log('reduxtoken', result.token);
-                        setTimeout(() => {
-                            // window.location.reload()
-
-                            navigate('/home');
-
-                            setIsLoading(false)
-                        }, 1000)
-                        // console.log('response', result);
                     }
 
                 })

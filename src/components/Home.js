@@ -117,8 +117,8 @@ const getData = async () => {
 
   await axios.request(config)
       .then((response) => {
-        console.log("longs", response?.data?.data[0]?.location?.coordinates)
-        const truckData = response?.data?.data[0]?.location?.coordinates;
+        console.log("longs", response?.data?.data?.location?.coordinates)
+        const truckData = response?.data?.data?.location?.coordinates;
         if (truckData) {
           // const long = truckData.location.coordinates[0];
           // const lat = truckData.location.coordinates[1];
@@ -174,9 +174,7 @@ const getData = async () => {
           onUnmount={onUnmount}
         >
           {allCoordinates?.map((area, index) => (
-            area?.location && (
-              // console.log('area',area?.location?.coordinates)
-        
+            area?.location && (        
               <Marker
                 key={index}
                 icon={{
